@@ -13,7 +13,6 @@ import TeamDropdown from "@/components/team-dropdown";
 import HoursDropdown from "@/components/hours-dropdown";
 import DayDropdown from "@/components/day-dropdown";
 
-// Mock data for team members
 const teamMembers = [
   { id: 1, name: "Member 1", color: "bg-orange-500", bgColor: "bg-orange-50" },
   { id: 2, name: "Member 2", color: "bg-green-500", bgColor: "bg-green-50" },
@@ -38,7 +37,6 @@ const teamMembers = [
   },
 ];
 
-// Mock data for time slots
 const timeSlots = [
   "6am",
   "7am",
@@ -51,11 +49,10 @@ const timeSlots = [
   "2pm",
 ];
 
-// Mock data for appointments
 const appointments = [
   {
     id: 1,
-    memberId: 1,
+    memberId: 2,
     clientName: "Client Name",
     startTime: "10:00 am",
     endTime: "10:45 am",
@@ -79,15 +76,15 @@ const appointments = [
   },
   {
     id: 4,
-    memberId: 9,
+    memberId: 8,
     clientName: "Client Name",
     startTime: "11:30 am",
     endTime: "12:00 pm",
-    column: 5,
+    column: 4,
   },
   {
     id: 5,
-    memberId: 9,
+    memberId: 8,
     clientName: "Client Name",
     startTime: "1:15 pm",
     endTime: "2:00 am",
@@ -103,7 +100,6 @@ const appointments = [
   },
 ];
 
-// Mock data for assignments
 const assignedItems = [
   {
     id: 1,
@@ -155,12 +151,11 @@ export default function TeamScheduler() {
   const [hourView, setHourView] = useState("1 hour");
   const [dayView, setDayView] = useState("day");
 
-  // Format the current date for display
   const formatDate = (date: Date) => {
     return date.toLocaleDateString("en-US", { month: "long", year: "numeric" });
   };
 
-  // Handle navigation between days
+ 
   const navigateDay = (direction: "prev" | "next" | "today") => {
     const newDate = new Date(currentDate);
 
@@ -177,7 +172,7 @@ export default function TeamScheduler() {
 
   return (
     <div className="w-full overflow-hidden">
-      {/* Header */}
+
       <div className="border-b">
         <div className="flex flex-wrap items-center justify-between px-4 py-3 gap-2">
           <div className="flex items-center gap-2 md:w-auto w-full">

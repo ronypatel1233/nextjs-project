@@ -21,7 +21,7 @@ export default function StatusDropdown({ value, onValueChange }: StatusDropdownP
   const [open, setOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
 
-  // Close dropdown when clicking outside
+  
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -34,8 +34,6 @@ export default function StatusDropdown({ value, onValueChange }: StatusDropdownP
       document.removeEventListener("mousedown", handleClickOutside)
     }
   }, [])
-
-  // Get the label for the current value
   const currentLabel = statusOptions.find((option) => option.value === value)?.label || "Status"
 
   return (

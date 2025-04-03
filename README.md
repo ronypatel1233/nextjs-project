@@ -37,4 +37,9 @@ By default, the application runs at: http://localhost:3000
 
 ## Dependencies
 - Check package.json for the full list of dependencies.
-   
+
+
+
+## Screenshot
+![Image-1](https://github.com/user-attachments/assets/35ac6263-e6df-449f-8b69-7fdeca96e307)
+

@@ -28,11 +28,11 @@ Ensure you have the following installed:
 ### Running project
 1. Start the development server:
    ```sh
-   npm run dev
+   npm start
 
 2. Start the development server:
    ```sh
-   npm run dev
+   npm start
 By default, the application runs at: http://localhost:3000
 
 ## Dependencies

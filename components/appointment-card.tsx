@@ -12,23 +12,23 @@ interface AppointmentCardProps {
 }
 
 export default function AppointmentCard({ appointment, memberIndex, bgColor }: AppointmentCardProps) {
-  // Calculate position based on member index and column
-  const top = 60 * memberIndex + 10 // 60px per row, 10px padding
-  const left = (appointment.column - 1) * (100 / 9) + 1 // Adjust based on column and grid
-  const width = 100 / 9 - 2 // Slightly less than one column width
+ 
+  const top = 60 * memberIndex + 5 
+  const left = (appointment.column - 1) * (100 / 9) + 1 
+  const width = 100 / 7 - 2 
 
   return (
     <div
       className={`absolute border rounded-md p-2 text-xs overflow-hidden ${bgColor}`}
       style={{
         top: `${top}px`,
-        left: `calc(150px + ${left}%)`, // 150px is the width of the team member column
+        left: `calc(140px + ${left}%)`, 
         width: `calc(${width}%)`,
         zIndex: 10,
       }}
     >
       <div className="font-medium">{appointment.clientName}</div>
-      <div className="text-gray-500">
+      <div className="text-gray-400">
         {appointment.startTime} - {appointment.endTime}
       </div>
     </div>

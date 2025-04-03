@@ -11,16 +11,15 @@ interface TeamDropdownProps {
 
 const teamOptions = [
   { value: "all", label: "Teams" },
-  { value: "team-a", label: "Team A" },
-  { value: "team-b", label: "Team B" },
-  { value: "team-c", label: "Team C" },
+  { value: "team-a", label: "ReactJS" },
+  { value: "team-b", label: "NodeJS" },
+  { value: "team-c", label: "Flutter" },
 ]
 
 export default function TeamDropdown({ value, onValueChange }: TeamDropdownProps) {
   const [open, setOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -34,7 +33,6 @@ export default function TeamDropdown({ value, onValueChange }: TeamDropdownProps
     }
   }, [])
 
-  // Get the label for the current value
   const currentLabel = teamOptions.find((option) => option.value === value)?.label || "Team"
 
   return (

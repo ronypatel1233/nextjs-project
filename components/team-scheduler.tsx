@@ -57,6 +57,7 @@ const appointments = [
     startTime: "10:00 am",
     endTime: "10:45 am",
     column: 1,
+    bgColor: "bg-sky-50",
   },
   {
     id: 2,
@@ -65,6 +66,7 @@ const appointments = [
     startTime: "8:00 am",
     endTime: "8:30 am",
     column: 3,
+    bgColor: "bg-sky-50",
   },
   {
     id: 3,
@@ -73,6 +75,8 @@ const appointments = [
     startTime: "9:30 am",
     endTime: "10:00 am",
     column: 3,
+    bgColor: "bg-fuchsia-50",
+   
   },
   {
     id: 4,
@@ -81,6 +85,7 @@ const appointments = [
     startTime: "11:30 am",
     endTime: "12:00 pm",
     column: 4,
+    bgColor: "bg-fuchsia-50",
   },
   {
     id: 5,
@@ -97,6 +102,7 @@ const appointments = [
     startTime: "12:30 pm",
     endTime: "1:00 pm",
     column: 1,
+    bgColor: "bg-sky-50",
   },
 ];
 
@@ -155,7 +161,7 @@ export default function TeamScheduler() {
     return date.toLocaleDateString("en-US", { month: "long", year: "numeric" });
   };
 
- 
+
   const navigateDay = (direction: "prev" | "next" | "today") => {
     const newDate = new Date(currentDate);
 
@@ -195,52 +201,52 @@ export default function TeamScheduler() {
           </Tabs>
         </div>
 
-        
+
       </div>
 
       {/* Main content */}
       <div className="flex flex-col md:flex-row md:gap-0 gap-6">
         {/* Team schedule grid */}
         <div className="flex-grow overflow-x-auto">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 px-4 py-3 border-t">
-          <div className="flex flex-wrap gap-2">
-            <StatusDropdown
-              value={statusFilter}
-              onValueChange={setStatusFilter}
-            />
-            <TeamDropdown value={teamFilter} onValueChange={setTeamFilter} />
-          </div>
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 px-4 py-3 border-t">
+            <div className="flex flex-wrap gap-2">
+              <StatusDropdown
+                value={statusFilter}
+                onValueChange={setStatusFilter}
+              />
+              <TeamDropdown value={teamFilter} onValueChange={setTeamFilter} />
+            </div>
 
-          <div className="flex items-center gap-2">
-            <HoursDropdown value={hourView} onValueChange={setHourView} />
-            <DayDropdown value={dayView} onValueChange={setDayView} />
-            <div className="flex items-center">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="h-8 w-8"
-                onClick={() => navigateDay("prev")}
-              >
-                <ChevronLeft className="h-4 w-4" />
-              </Button>
-              <Button
-                variant="ghost"
-                className="px-2"
-                onClick={() => navigateDay("today")}
-              >
-                Today
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="h-8 w-8"
-                onClick={() => navigateDay("next")}
-              >
-                <ChevronRight className="h-4 w-4" />
-              </Button>
+            <div className="flex items-center gap-2">
+              <HoursDropdown value={hourView} onValueChange={setHourView} />
+              <DayDropdown value={dayView} onValueChange={setDayView} />
+              <div className="flex items-center">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-8 w-8"
+                  onClick={() => navigateDay("prev")}
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                </Button>
+                <Button
+                  variant="ghost"
+                  className="px-2"
+                  onClick={() => navigateDay("today")}
+                >
+                  Today
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-8 w-8"
+                  onClick={() => navigateDay("next")}
+                >
+                  <ChevronRight className="h-4 w-4" />
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
           <div className="min-w-[800px] border-t ">
             {/* Team header */}
             <div className="flex bg-gray-100">
@@ -281,7 +287,8 @@ export default function TeamScheduler() {
                     key={appointment.id}
                     appointment={appointment}
                     memberIndex={memberIndex}
-                    bgColor={member.bgColor}
+                    // bgColor={member.bgColor}
+                    bgColor={appointment.bgColor || member.bgColor}
                   />
                 );
               })}
@@ -290,45 +297,49 @@ export default function TeamScheduler() {
         </div>
 
         {/* Assignments sidebar */}
-        
-          <div className="w-full md:w-[350px] border-l md:h-[calc(100dvh_-_65px)] h-auto">
-            <Tabs
-              defaultValue="assigned"
-              className="w-full md:w-auto"
-              onValueChange={setAssignmentTab}
+
+        <div className="w-full md:w-[350px] border-l md:h-[calc(100dvh_-_65px)] h-auto">
+          <Tabs
+            defaultValue="assigned"
+            className="w-full md:w-auto"
+            onValueChange={setAssignmentTab}
+          >
+            <TabsList className="grid grid-cols-2 w-full md:w-auto">
+              <TabsTrigger value="assigned">Assigned</TabsTrigger>
+              <TabsTrigger value="unassigned">Unassigned</TabsTrigger>
+            </TabsList>
+          </Tabs>
+          <div className="p-4 border-b flex justify-between items-center">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="flex items-center gap-1 bg-muted border w-full h-8"
             >
-              <TabsList className="grid grid-cols-2 w-full md:w-auto">
-                <TabsTrigger value="assigned">Assigned</TabsTrigger>
-                <TabsTrigger value="unassigned">Unassigned</TabsTrigger>
-              </TabsList>
-            </Tabs>
-            <div className="p-4 border-b flex justify-between items-center">
-              <Button
-                variant="ghost"
-                size="sm"
-                className="flex items-center gap-1 bg-muted border w-full h-8"
-              >
-                <span>Assign All</span>
-                <Plus className="h-4 w-4" />
-              </Button>
-            </div>
-            <div className="overflow-y-auto max-h-[calc(100vh-200px)]">
-              {assignmentTab === "assigned"
-                ? assignedItems.map((assignment) => (
-                    <AssignmentCard
-                      key={assignment.id}
-                      assignment={assignment}
-                    />
-                  ))
-                : unassignedItems.map((assignment) => (
-                    <AssignmentCard
-                      key={assignment.id}
-                      assignment={assignment}
-                    />
-                  ))}
-            </div>
+              <span>Assign All</span>
+              <img
+                src="/Mask group.jpg"
+                alt="Assign All Icon"
+                className="h-4 w-4"
+              />
+            </Button>
           </div>
-        
+          <div className="overflow-y-auto max-h-[calc(100vh-200px)]">
+            {assignmentTab === "assigned"
+              ? assignedItems.map((assignment) => (
+                <AssignmentCard
+                  key={assignment.id}
+                  assignment={assignment}
+                />
+              ))
+              : unassignedItems.map((assignment) => (
+                <AssignmentCard
+                  key={assignment.id}
+                  assignment={assignment}
+                />
+              ))}
+          </div>
+        </div>
+
       </div>
     </div>
   );

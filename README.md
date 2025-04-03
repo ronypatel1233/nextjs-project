@@ -25,18 +25,6 @@ Ensure you have the following installed:
    
 --legacy-peer-deps allows installing packages even when some dependencies have version conflicts. This is needed when older libraries require specific versions that might not be compatible with the latest ones. It is only required during the first project setup.
 
-
-### Running project on dev
-1. Build the project:
-   ```sh
-   npm run build
-
-2. Start the server:
-   ```sh
-   npm run dev
-By default, the application runs at: http://localhost:3000
-
-
 ### Running project on prod
 1. Build the project:
    ```sh
@@ -45,6 +33,12 @@ By default, the application runs at: http://localhost:3000
 2. Start the server:
    ```sh
    npm start
+By default, the application runs at: http://localhost:3000
+
+### Running project on dev
+1. Start the server:
+   ```sh
+   npm run dev
 By default, the application runs at: http://localhost:3000
 
 ## Dependencies
